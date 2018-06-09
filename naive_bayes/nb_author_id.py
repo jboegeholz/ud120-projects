@@ -9,25 +9,32 @@
     Sara has label 0
     Chris has label 1
 """
-    
+from __future__ import print_function
 import sys
 from time import time
+
 sys.path.append("../tools/")
 from email_preprocess import preprocess
 from sklearn.naive_bayes import GaussianNB
+from sklearn.metrics import accuracy_score
 
-### features_train and features_test are the features for the training
-### and testing datasets, respectively
-### labels_train and labels_test are the corresponding item labels
+# features_train and features_test are the features for the training
 features_train, features_test, labels_train, labels_test = preprocess()
 
+# training
+print("Start training")
 t0 = time()
 clf = GaussianNB()
 clf.fit(features_train, labels_train)
+print("training time:", round(time() - t0, 3), "s")
 
-
-print "training time:", round(time()-t0, 3), "s"
-
+# prediction
+print("start predicting")
 t0 = time()
-clf.predict()
-print "predict time:", round(time()-t0, 3), "s"
+prediction = clf.predict(features_test)
+print("predict time:", round(time() - t0, 3), "s")
+
+# accuracy
+print("Calculating accuracy")
+accuracy = accuracy_score(labels_test, prediction)
+print("Accuracy calculated, and the accuracy is", accuracy)
