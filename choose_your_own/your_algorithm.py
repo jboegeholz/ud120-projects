@@ -1,6 +1,8 @@
 #!/usr/bin/python
 
 import matplotlib.pyplot as plt
+from sklearn.linear_model import SGDClassifier
+
 from prep_terrain_data import makeTerrainData
 from class_vis import prettyPicture
 
@@ -30,11 +32,21 @@ plt.show()
 
 ### your code here!  name your classifier object clf if you want the 
 ### visualization code (prettyPicture) to show you the decision boundary
+from sklearn.ensemble import RandomForestClassifier
+clf = RandomForestClassifier()
+clf.fit(features_train, labels_train)
+print "RFC acc: ", clf.score(features_test, labels_test)
 
 
+from sklearn.neighbors import KNeighborsClassifier
+clf = KNeighborsClassifier(n_neighbors=1, algorithm='auto', weights='distance')
+clf.fit(features_train, labels_train)
+print "KNN acc: ", clf.score(features_test, labels_test)
 
-
-
+from sklearn.ensemble import AdaBoostClassifier
+clf = AdaBoostClassifier(n_estimators=100)
+clf.fit(features_train, labels_train)
+print "AdaBoost acc: ", clf.score(features_test, labels_test)
 
 
 
