@@ -19,4 +19,15 @@ import pickle
 
 enron_data = pickle.load(open("../final_project/final_project_dataset.pkl", "r"))
 
+print "number of data points: ", len(enron_data)
+
+print "number of features: ", len(enron_data["METTS MARK"])
+
+poi_count = 0
+for entry in enron_data:
+    if enron_data[entry]["poi"]:
+        poi_count = poi_count + 1
+
+print "number of pois: ", poi_count
+
 

@@ -2,3 +2,5 @@ numpy
 sklearn
 scipy
 nltk
+matplotlib
+pylab
