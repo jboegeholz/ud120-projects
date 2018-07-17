@@ -16,7 +16,8 @@ from time import time
 sys.path.append("../tools/")
 from email_preprocess import preprocess
 from sklearn.naive_bayes import GaussianNB
-from sklearn.metrics import accuracy_score
+from sklearn.metrics import accuracy_score, roc_curve
+
 
 # features_train and features_test are the features for the training
 features_train, features_test, labels_train, labels_test = preprocess()
@@ -38,3 +39,5 @@ print("predict time:", round(time() - t0, 3), "s")
 print("Calculating accuracy")
 accuracy = accuracy_score(labels_test, prediction)
 print("Accuracy calculated, and the accuracy is", accuracy)
+
+from sklearn.metrics import confusion_matrix
